@@ -15,7 +15,10 @@
         let nameIsValid = false;
         while (!nameIsValid) {
           name = prompt("Введите имя:");
-          if (name === null) return;
+          if (name === null) {
+            alert("Пожалуйста, введите имя!");
+            continue;
+          }
 
           if (!name || name.trim() === "") {
             alert("Имя не может быть пустым!");
@@ -28,10 +31,14 @@
           }
           nameIsValid = true;
         }
+
         let surNameIsValid = false;
         while (!surNameIsValid) {
           surName = prompt("Введите фамилию:");
-          if (surName === null) return;
+          if (surName === null) {
+            alert("Пожалуйста, введите фамилию!");
+            continue;
+          }
 
           if (!surName || surName.trim() === "") {
             alert("Фамилия не может быть пустой!");
@@ -49,7 +56,10 @@
         let middleNameIsValid = false;
         while (!middleNameIsValid) {
           middleName = prompt("Введите отчество:");
-          if (middleName === null) return;
+          if (middleName === null) {
+            alert("Пожалуйста, введите отчество!");
+            continue;
+          }
 
           if (!middleName || middleName.trim() === "") {
             alert("Отчество не может быть пустым!");
@@ -66,8 +76,10 @@
         let ageIsValid = false;
         while (!ageIsValid) {
           const ageInput = prompt("Введите возраст:");
-          if (ageInput === null) return;
-
+          if (ageInput === null) {
+            alert("Пожалуйста, введите возраст!");
+            continue;
+          }
           age = parseInt(ageInput);
 
           if (isNaN(age)) {
@@ -105,10 +117,10 @@
         }
 
         const profile = `ФИО: ${surName.trim()} ${name.trim()} ${middleName.trim()}
-возраст, лет: ${age}
-возраст, дней: ${ageDays}
-пол: ${gender}
-пенсионный возраст: ${isPensioner}`;
+      возраст, лет: ${age}
+      возраст, дней: ${ageDays}
+      пол: ${gender}
+      пенсионный возраст: ${isPensioner}`;
 
         alert(profile);
       });
