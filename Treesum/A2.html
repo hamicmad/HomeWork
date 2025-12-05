@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">Click</button>
+    <script>
+      btn.addEventListener("click", () => {
+        const mes = prompt("Введите сообщение:");
+        stringBack(mes);
+      });
+
+      function stringBack(str) {
+        let i = 0;
+        let j = str.length - 1;
+        while (str[i] === " ") {
+          i++;
+        }
+        while (str[j] === " ") {
+          j--;
+        }
+        const mes = str.slice(i, j + 1);
+        alert(`*${mes}*`);
+      }
+    </script>
+  </body>
+</html>
+<!-- // Написать чистую функцию, эффективно удаляющую из переданной ей 
+// строки все начальные и конечные пробелы.
+// Не используйте метод строки trim.
+// Не используйте массивы (это неэффективно в данной задаче).
+// Если умеете работать с регулярными выражениям - не используйте и их :)
+// Спросите у пользователя строку, уберите из неё с 
+// помощью этой функции начальные и конечные пробелы -->
