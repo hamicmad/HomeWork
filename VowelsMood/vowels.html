@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function countVowels(text) {
+        const lowerText = text.toLowerCase();
+        const vowels = "аеёиоуыэюя";
+
+        let count = 0;
+
+        for (let i = 0; i < lowerText.length; i++) {
+          const char = lowerText[i];
+          if (vowels.includes(char)) {
+            count++;
+          }
+        }
+
+        return count;
+      }
+
+      function main() {
+        const userInput = prompt("Введите строку:");
+
+        if (userInput !== null) {
+          const vowelCount = countVowels(userInput);
+          console.log(`Количество русских гласных букв: ${vowelCount}`);
+        } else {
+          console.log("Отмена");
+        }
+      }
+      main();
+    </script>
+  </body>
+</html>
