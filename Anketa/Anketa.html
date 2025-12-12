@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">Start</button>
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        let name, surName, middleName, age;
+
+        let nameIsValid = false;
+        while (!nameIsValid) {
+          name = prompt("Введите имя:");
+          if (name === null) {
+            alert("Пожалуйста, введите имя!");
+            continue;
+          }
+
+          if (!name || name.trim() === "") {
+            alert("Имя не может быть пустым!");
+            continue;
+          }
+
+          if (name.trim().length < 2) {
+            alert("Имя должно содержать минимум 2 буквы!");
+            continue;
+          }
+          nameIsValid = true;
+        }
+
+        let surNameIsValid = false;
+        while (!surNameIsValid) {
+          surName = prompt("Введите фамилию:");
+          if (surName === null) {
+            alert("Пожалуйста, введите фамилию!");
+            continue;
+          }
+
+          if (!surName || surName.trim() === "") {
+            alert("Фамилия не может быть пустой!");
+            continue;
+          }
+
+          if (surName.trim().length < 2) {
+            alert("Фамилия должна содержать минимум 2 буквы!");
+            continue;
+          }
+
+          surNameIsValid = true;
+        }
+
+        let middleNameIsValid = false;
+        while (!middleNameIsValid) {
+          middleName = prompt("Введите отчество:");
+          if (middleName === null) {
+            alert("Пожалуйста, введите отчество!");
+            continue;
+          }
+
+          if (!middleName || middleName.trim() === "") {
+            alert("Отчество не может быть пустым!");
+            continue;
+          }
+
+          if (middleName.trim().length < 2) {
+            alert("Отчество должно содержать минимум 2 буквы!");
+            continue;
+          }
+          middleNameIsValid = true;
+        }
+
+        let ageIsValid = false;
+        while (!ageIsValid) {
+          const ageInput = prompt("Введите возраст:");
+          if (ageInput === null) {
+            alert("Пожалуйста, введите возраст!");
+            continue;
+          }
+          age = parseInt(ageInput);
+
+          if (isNaN(age)) {
+            alert("Возраст должен быть числом!");
+            continue;
+          }
+
+          if (age < 1 || age > 120) {
+            alert("Возраст должен быть от 1 до 120 лет!");
+            continue;
+          }
+          ageIsValid = true;
+        }
+
+        const ageDays = age * 365;
+        const isMale = confirm("Пол - мужской?");
+
+        let gender;
+        let isPensioner;
+
+        if (isMale) {
+          gender = "мужской";
+          if (age >= 63) {
+            isPensioner = "да";
+          } else {
+            isPensioner = "нет";
+          }
+        } else {
+          gender = "женский";
+          if (age >= 58) {
+            isPensioner = "да";
+          } else {
+            isPensioner = "нет";
+          }
+        }
+
+        const profile = `ФИО: ${surName.trim()} ${name.trim()} ${middleName.trim()}
+      возраст, лет: ${age}
+      возраст, дней: ${ageDays}
+      пол: ${gender}
+      пенсионный возраст: ${isPensioner}`;
+
+        alert(profile);
+      });
+    </script>
+  </body>
+</html>
