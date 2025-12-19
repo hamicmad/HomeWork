@@ -7,28 +7,38 @@
   </head>
   <body>
     <script>
-      function countVowels(text) {
+      const vowels = "аеёиоуыэюя";
+      function countForEach(text) {
         const lowerText = text.toLowerCase();
-        const vowels = "аеёиоуыэюя";
-
         let count = 0;
-
-        for (let i = 0; i < lowerText.length; i++) {
-          const char = lowerText[i];
-          if (vowels.includes(char)) {
-            count++;
-          }
-        }
-
+        lowerText.split("").forEach((ch) => {
+          if (vowels.includes(ch)) count++;
+        });
         return count;
+      }
+      function countFilter(text) {
+        const lowerText = text.toLowerCase();
+        let filVowels = lowerText.split("").filter((ch) => vowels.includes(ch));
+        return filVowels.length;
+      }
+      function countReduce(text) {
+        const lowerText = text.toLowerCase();
+        let res = lowerText
+          .split("")
+          .reduce((count, ch) => (vowels.includes(ch) ? count + 1 : count), 0);
+        return res;
       }
 
       function main() {
         const userInput = prompt("Введите строку:");
 
         if (userInput !== null) {
-          const vowelCount = countVowels(userInput);
-          console.log(`Количество русских гласных букв: ${vowelCount}`);
+          let vowelCount = countForEach(userInput);
+          console.log(`Количество русских гласных букв ForEach: ${vowelCount}`);
+          vowelCount = countFilter("аааааааа");
+          console.log(`Количество русских гласных букв Filter: ${vowelCount}`);
+          vowelCount = countReduce("ааааа");
+          console.log(`Количество русских гласных букв Reduce: ${vowelCount}`);
         } else {
           console.log("Отмена");
         }
