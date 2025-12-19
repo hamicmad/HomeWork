@@ -35,9 +35,9 @@
         if (userInput !== null) {
           let vowelCount = countForEach(userInput);
           console.log(`Количество русских гласных букв ForEach: ${vowelCount}`);
-          vowelCount = countFilter("аааааааа");
+          vowelCount = countFilter(userInput);
           console.log(`Количество русских гласных букв Filter: ${vowelCount}`);
-          vowelCount = countReduce("ааааа");
+          vowelCount = countReduce(userInput);
           console.log(`Количество русских гласных букв Reduce: ${vowelCount}`);
         } else {
           console.log("Отмена");
