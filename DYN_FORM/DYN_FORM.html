@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Две формы</h1>
+    <form
+      id="form1"
+      action="https://fe.it-academy.by/TestForm.php"
+      method="post"
+    ></form>
+    <form
+      id="form2"
+      action="https://fe.it-academy.by/TestForm.php"
+      method="post"
+    ></form>
+
+    <script>
+      const formDef1 = [
+        { label: "Название сайта:", kind: "longtext", name: "sitename" },
+        { label: "URL сайта:", kind: "longtext", name: "siteurl" },
+        { label: "Посетителей в сутки:", kind: "number", name: "visitors" },
+        { label: "E-mail для связи:", kind: "shorttext", name: "email" },
+        {
+          label: "Рубрика каталога:",
+          kind: "dropdown",
+          name: "division",
+          variants: [
+            { text: "здоровье", value: 1 },
+            { text: "домашний уют", value: 2 },
+            { text: "бытовая техника", value: 3 },
+          ],
+        },
+        {
+          label: "Размещение:",
+          kind: "radio",
+          name: "payment",
+          variants: [
+            { text: "бесплатное", value: 1 },
+            { text: "платное", value: 2 },
+            { text: "VIP", value: 3 },
+          ],
+        },
+        { label: "Разрешить отзывы:", kind: "check", name: "votes" },
+        { label: "Описание сайта:", kind: "memo", name: "description" },
+        { caption: "Опубликовать", kind: "submit" },
+      ];
+
+      const formDef2 = [
+        { label: "Фамилия:", kind: "longtext", name: "lastname" },
+        { label: "Имя:", kind: "longtext", name: "firstname" },
+        { label: "Отчество:", kind: "longtext", name: "secondname" },
+        { label: "Возраст:", kind: "number", name: "age" },
+        { caption: "Зарегистрироваться", kind: "submit" },
+      ];
+
+      function buildForm(formElement, formDef) {
+        formDef.forEach((item) => {
+          if (item.label) {
+            const label = document.createElement("label");
+            label.textContent = item.label;
+            formElement.appendChild(label);
+          }
+
+          let input;
+          if (
+            item.kind === "longtext" ||
+            item.kind === "shorttext" ||
+            item.kind === "number"
+          ) {
+            input = document.createElement("input");
+            input.name = item.name;
+            input.type = item.kind === "number" ? "number" : "text";
+
+            if (item.kind === "longtext") input.style.width = "300px";
+          } else if (item.kind === "dropdown") {
+            input = document.createElement("select");
+            input.name = item.name;
+            item.variants.forEach((v) => {
+              const option = document.createElement("option");
+              option.value = v.value;
+              option.textContent = v.text;
+              input.appendChild(option);
+            });
+          } else if (item.kind === "radio") {
+            input = document.createElement("span");
+            item.variants.forEach((v) => {
+              const radio = document.createElement("input");
+              radio.type = "radio";
+              radio.name = item.name;
+              radio.value = v.value;
+              const radioLabel = document.createTextNode(v.text);
+              input.appendChild(radio);
+              input.appendChild(radioLabel);
+            });
+          } else if (item.kind === "check") {
+            input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = item.name;
+          } else if (item.kind === "memo") {
+            input = document.createElement("textarea");
+            input.name = item.name;
+            input.style.display = "block";
+          } else if (item.kind === "submit") {
+            input = document.createElement("input");
+            input.type = "submit";
+            input.value = item.caption;
+          }
+
+          if (input) {
+            formElement.appendChild(input);
+          }
+
+          formElement.appendChild(document.createElement("br"));
+        });
+      }
+
+      buildForm(document.getElementById("form1"), formDef1);
+      buildForm(document.getElementById("form2"), formDef2);
+    </script>
+  </body>
+</html>
