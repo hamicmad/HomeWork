@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>drag&amp;drop</title>
+  </head>
+  <body style="min-height: 100vh">
+    <img src="http://fe.it-academy.by/Sites/0000007/sax.jpg" />
+    <img
+      src="http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png"
+      width="100"
+      style="vertical-align: 20px"
+    />
+    <img
+      src="http://fe.it-academy.by/Sites/0000007/Man-and-woman.png"
+      width="150"
+    />
+    <img
+      src="http://fe.it-academy.by/Sites/0000007/No_smoking.png"
+      style="padding-left: 50px"
+    />
+
+    <script>
+      window.onload = function () {
+        const images = document.getElementsByTagName("img");
+        let counter = 1;
+
+        for (let i = 0; i < images.length; i++) {
+          const img = images[i];
+
+          const rect = img.getBoundingClientRect();
+          const startX = rect.left + window.pageXOffset;
+          const startY = rect.top + window.pageYOffset;
+
+          img.style.position = "absolute";
+          img.style.left = startX + "px";
+          img.style.top = startY + "px";
+          img.style.cursor = "grab";
+          img.style.zIndex = counter++;
+
+          img.onmousedown = function (e) {
+            e.preventDefault();
+
+            img.style.cursor = "grabbing";
+            img.style.zIndex = counter++;
+
+            let shiftX = e.clientX - img.getBoundingClientRect().left;
+            let shiftY = e.clientY - img.getBoundingClientRect().top;
+
+            function moveAt(pageX, pageY) {
+              img.style.left = pageX - shiftX + "px";
+              img.style.top = pageY - shiftY + "px";
+            }
+
+            function onMouseMove(e) {
+              moveAt(e.pageX, e.pageY);
+            }
+            document.addEventListener("mousemove", onMouseMove);
+
+            document.onmouseup = function () {
+              document.removeEventListener("mousemove", onMouseMove);
+              img.style.cursor = "grab";
+            };
+          };
+
+          img.ondragstart = function () {
+            return false;
+          };
+        }
+      };
+    </script>
+  </body>
+</html>
