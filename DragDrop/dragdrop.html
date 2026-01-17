@@ -24,17 +24,23 @@
       window.onload = function () {
         const images = document.getElementsByTagName("img");
         let counter = 1;
+        const positions = [];
+
+        for (let i = 0; i < images.length; i++) {
+          const rect = images[i].getBoundingClientRect();
+          positions.push({
+            left: rect.left + window.pageXOffset,
+            top: rect.top + window.pageYOffset,
+          });
+        }
 
         for (let i = 0; i < images.length; i++) {
           const img = images[i];
 
-          const rect = img.getBoundingClientRect();
-          const startX = rect.left + window.pageXOffset;
-          const startY = rect.top + window.pageYOffset;
-
+          img.style.left = positions[i].left + "px";
+          img.style.top = positions[i].top + "px";
           img.style.position = "absolute";
-          img.style.left = startX + "px";
-          img.style.top = startY + "px";
+
           img.style.cursor = "grab";
           img.style.zIndex = counter++;
 
