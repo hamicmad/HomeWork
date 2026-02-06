@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      #game {
+        text-align: center;
+      }
+      #score {
+        font-size: 40px;
+        font-family: Arial;
+        margin: 10px;
+      }
+      #field {
+        background-color: #f0ee7e;
+        border: 1px solid #aaa;
+        position: relative;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      #ball {
+        background-color: #f00;
+        border-radius: 50%;
+        position: absolute;
+      }
+      .racket {
+        position: absolute;
+      }
+      #racket-left {
+        background-color: #090;
+      }
+      #racket-right {
+        background-color: #191970;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game">
+      <button onclick="startGame()">Старт</button>
+      <div id="score">0 : 0</div>
+      <div id="field" id="field">
+        <div id="racket-left" class="racket"></div>
+        <div id="racket-right" class="racket"></div>
+        <div id="ball"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
